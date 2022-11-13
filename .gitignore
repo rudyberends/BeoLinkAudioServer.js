@@ -1,0 +1,5 @@
+.vscode
+logs/*
+static/img/*
+node_modules
+.env

@@ -104,8 +104,8 @@ async function createNotificationListener(zoneId) {
                     var filename = `${msg.notification.data.album.replace(/\s+/g, '')}.jpg`;
                     await download.image({
                         url: msg.notification.data.trackImage[0].url,
-                        dest: `/workspaces/BeoLinkAudioServer/static/img/${filename}` // DEV container
-                        //dest: `/usr/src/app/static/img/${filename}`
+                        //dest: `/workspaces/BeoLinkAudioServer/static/img/${filename}` // DEV container
+                        dest: `/usr/src/app/static/img/${filename}`
                      });
                     zone[zoneId].track.coverurl = `http://${config.audioserver.webserver}/static/img/${filename}`
                     // Workarround voor coverurl

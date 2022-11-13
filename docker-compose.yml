@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  beolinkaudioserver:
+    image: beolinkaudioserver
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 7091:7091
+      - 7095:7095
