@@ -128,6 +128,8 @@ async function createNotificationListener(zoneId) {
                     zone[zoneId].track.mode = msg.notification.data.state
                     zone[zoneId].track.time = msg.notification.data.position
                     if (msg.notification.data.playQueueItemId && msg.notification.data.playQueueItemId === 'AUX') {
+                        zone[zoneId].track.audiotype = 1;
+                        zone[zoneId].track.duration = 0;
                         zone[zoneId].track.title = "Apple TV"
                     }
                     audioserver.pushAudioEvents(zone[zoneId])
