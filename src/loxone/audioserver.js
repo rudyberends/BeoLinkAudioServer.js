@@ -286,10 +286,10 @@ async function handleMessage(method) {
 
         case /(?:^|\/)audio\/\d+\/favoriteplay(?:\/|$)/.test(url):
             return audioFavoritePlay(url, []);
-
+*/
         case /(?:^|\/)audio\/\d+\/getqueue(?:\/|$)/.test(url):
             return audioGetQueue(url, []);
-
+/*
         case /(?:^|\/)audio\/\d+\/identifysource(?:\/|$)/.test(url):
             return audioIdentifySource(url);
 
@@ -557,6 +557,87 @@ function audioGetStatus(url) {
     audioserver.pushAudioEvents(zone[zoneId])
     // Send empty response. BeoNotify will push the right values
     return response(url, 'status', [])
+}
+
+async function audioGetQueue(url) {
+    const [, zoneId, , start, length] = url.split('/');
+    const zone = this._zones[zoneId];
+    if (!zone) {
+        return this._emptyCommand(url, []);
+    }
+
+    /*
+    if (+zoneId > 0) {
+      let {total, items} = await zone.getQueueList().get(undefined, +start, +length);
+
+      if (total === 0) {
+        items = +start === 0 ? [zone.getTrack()] : [];
+        total = 1;
+      }
+
+      return this._response(url, 'getqueue', [
+        {
+          id: +zoneId,
+          totalitems: total,
+          start: +start,
+          items: items.map(this._convert(2, 0, +start)),
+        },
+      ]);
+    }
+*/
+/*
+{
+    "getqueue_result": [
+        {
+            "id": 1,
+            "items": [
+                {
+                    "album": "",
+                    "artist": "",
+                    "audiopath": "linein:504F94F042A3#1000001",
+                    "audiotype": 3,
+                    "coverurl": "http://10.7.10.151:7091/imgcache/?item=linein&icontype=8&enabled=1&viaproxy=170ab4fc-0261-9bac-ffffc581ef707fce",
+                    "duration": 0,
+                    "icontype": 8,
+                    "qindex": 0,
+                    "station": "",
+                    "title": "SatRadio",
+                    "unique_id": "linein:504F94F042A3#1000001",
+                    "user": ""
+                }
+            ],
+            "shuffle": false,
+            "start": 0,
+            "totalitems": 1
+        }
+    ],
+    "command": "audio/1/getqueue/0/50"
+}
+    */
+
+    //return response(url, 'getqueue', []);
+    return response(url, 'getqueue', [   {
+        "id": 1,
+        "items": [
+            {
+                "album": "",
+                "artist": "",
+                "audiopath": "linein:504F94F042A3#1000001",
+                "audiotype": 3,
+                "coverurl": "http://10.7.10.151:7091/imgcache/?item=linein&icontype=8&enabled=1&viaproxy=170ab4fc-0261-9bac-ffffc581ef707fce",
+                "duration": 0,
+                "icontype": 8,
+                "qindex": 0,
+                "station": "",
+                "title": "SatRadio",
+                "unique_id": "linein:504F94F042A3#1000001",
+                "user": ""
+            }
+        ],
+        "shuffle": false,
+        "start": 0,
+        "totalitems": 1
+    }]);
 }
 
 function audioCfgGetRoomFavs(url) {
