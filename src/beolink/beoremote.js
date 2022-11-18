@@ -58,7 +58,7 @@ beoremote.action = async (url) => {
 
 async function playItem(zoneId, item) {
 
-    var source = zoneId[zoneId].beolink.ip;
+    var source = zone[zoneId].beolink.ip;
     var url = `http://${source}:8080/Beozone/zone/PlayQueue?instantplay`;
 
     try {
