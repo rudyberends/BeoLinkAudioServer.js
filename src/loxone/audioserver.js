@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import NodeRSA from 'node-rsa';
 import beozone from '../beolink/beozone.js';
 import beoremote from '../beolink/beoremote.js'
+import beocontent from '../beolink/beocontent.js';
 
 const rsaKey = new NodeRSA({b: 2048});
 rsaKey.setOptions({encryptionScheme: 'pkcs1'});
@@ -715,29 +716,7 @@ function audioCfgGetRadios(url) {
 }
 
 async function audioCfgGetServiceFolder(url) {
-
-    let [, , , service, user, requestId, start, length] = url.split('/');
-
-    return response(url, 'getservicefolder', [{
-        
-        id: requestId,
-        totalitems: 1,
-        start: +start,
-        name: "Presets",
-        items: [
-            {
-                audiopath: "tunein:station:s244566",
-                contentType: "Playlists",
-                coverurl: "http://cdn-profiles.tunein.com/s244566/images/logoq.jpg?t=161495",
-                id: "tunein:station:s244566",
-                name: "Arabella Oberösterreich 96.7 (Adult Hits)",
-                sort: "",
-                station: "Arabella Oberösterreich 96.7 (Adult Hits)",
-                type: 2
-            }
-        ]
-    }])
-
+    return response(url, 'getservicefolder', [ await beocontent.netradio.getpresets(url) ])
 }
 
 async function audioCfgGetMediaFolder(url) {
