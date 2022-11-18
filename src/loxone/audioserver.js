@@ -562,9 +562,7 @@ function audioGetStatus(url) {
 async function audioGetQueue(url) {
     const [, zoneId, , start, length] = url.split('/');
     const zone = this._zones[zoneId];
-    if (!zone) {
-        return this._emptyCommand(url, []);
-    }
+  
 
     /*
     if (+zoneId > 0) {
