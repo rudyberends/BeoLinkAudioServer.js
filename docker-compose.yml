@@ -6,7 +6,7 @@ services:
     hostname: beolinkaudioserver
     image: beolinkaudioserver
     env_file:
-        - .env
+        - .env.example
     build:
       context: .
       dockerfile: ./Dockerfile
