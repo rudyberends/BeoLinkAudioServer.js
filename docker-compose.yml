@@ -10,8 +10,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: production
+    restart: always
     ports:
       - 7091:7091
       - 7095:7095
