@@ -2,7 +2,11 @@ version: '3.4'
 
 services:
   beolinkaudioserver:
+    container_name: beolinkaudioserver
+    hostname: beolinkaudioserver
     image: beolinkaudioserver
+    env_file:
+        - .env
     build:
       context: .
       dockerfile: ./Dockerfile
