@@ -11,7 +11,7 @@ beocontent.netradio.getpresets = async (url) => {
     let [, , , service, user, requestId, start, length] = url.split('/');
 
     // Get TuneIn presets from First BeoZone
-    var source = zone[15].beolink.ip;
+    var source = zone[14].beolink.ip;
     var url = `http://${source}:8080/BeoContent/radio/netRadioProfile/favoriteList/id%3df1/favoriteListStation`;
 
     try {
