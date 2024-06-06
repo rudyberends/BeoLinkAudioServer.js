@@ -3,8 +3,6 @@ import crc32 from 'crc32';
 
 const msClient = {}
 
-
-
 msClient.getAudioserverConfig = async () => {
 
     // Get MiniServer MAC
@@ -17,9 +15,8 @@ msClient.getAudioserverConfig = async () => {
     // Retrieve Music.json to calculate crc for getconfig cmd
     const response = await axios({
         url: `http://${config.miniserver.ip}/dev/fsget/prog/Music.json`,
-        method: 'post',
-        headers: { Authorization: authorization, },
-        data: {}
+        method: 'get',
+        headers: { Authorization: authorization },
     });
 
     config.miniserver.musicCFG = response.data
@@ -47,7 +44,6 @@ msClient.getAudioserverConfig = async () => {
         url: `http://${config.miniserver.ip}/dev/sps/devicestartup/${config.audioserver.uuid}`,
         method: 'get',
         headers: { Authorization: authorization, },
-        data: {}
     });
 }
 
@@ -57,10 +53,8 @@ async function getminiserverMAC() {
     const macResponse = await axios({
         url: `http://${config.miniserver.ip}/jdev/cfg/mac`,
         method: 'get',
-        data: {}
     });
     config.miniserver.mac = macResponse.data.LL.value.replace(/:/g, "").toUpperCase();
 }
-
 
 export default msClient;
